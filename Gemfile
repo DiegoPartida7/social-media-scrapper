@@ -29,7 +29,8 @@ gem 'hamlit'
 gem 'mechanize'
 gem 'nokogiri'
 gem 'open-uri'
-
+gem 'devise'
+gem 'activeadmin'
 
 
 
