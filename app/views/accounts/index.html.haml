@@ -1,0 +1,16 @@
+%table.table
+  %thead.thead-dark
+    %tr
+      %th{:scope => "col"} Nombre
+      %th{:scope => "col"} Handler
+      %th{:scope => "col"} Último post
+  %tbody
+    -@accounts.each do |account|
+      %tr
+        %th{:scope => "row"}= account.name
+        %td= account.handler
+        %td= account.last_post
+
+
+
+= link_to 'Nueva Cuenta', new_account_path

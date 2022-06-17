@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  root to: 'pages#landing'
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  root to: 'accounts#index'
+  resources :accounts, path: 'cuentas', path_names: { new: 'nueva', edit: 'editar', update: 'actualizar', create: 'crear' } do
+
+  end
 end

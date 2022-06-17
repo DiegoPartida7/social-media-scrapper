@@ -13,6 +13,7 @@ task :instagram do
   puts "Empezando SCRAPING INSTA...."
   puts '------------------------------------'
   puts "Scrapping de potal de proveedores..."
+  return "hi"
 
   # agent.get('https://aguilaazteca.mx/index.php/resellers/sessions/login') do |page|
   #   # Login to a website

@@ -31,6 +31,7 @@ gem 'nokogiri'
 gem 'open-uri'
 gem 'devise'
 gem 'activeadmin'
+gem 'simple_form'
 
 
 

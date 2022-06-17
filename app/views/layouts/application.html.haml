@@ -1,0 +1,15 @@
+!!!
+%html
+  %head
+    %title SocialMediaScrapping
+    %meta{:content => "width=device-width,initial-scale=1", :name => "viewport"}/
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag 'application'
+    = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
+  %body
+    = render partial: 'shared/navbar'
+    .container
+      .row 
+        .col-sm-12
+          = yield

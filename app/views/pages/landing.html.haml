@@ -1,12 +1,27 @@
-%nav.navbar.navbar-expand-lg.navbar-light.bg-light{style: "background-color: #e3f2fd;"}
-  %a.navbar-brand{:href => "#"} Navbar
-  %button.navbar-toggler{"aria-controls" => "navbarNavAltMarkup", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarNavAltMarkup", "data-toggle" => "collapse", :type => "button"}
-    %span.navbar-toggler-icon
-  #navbarNavAltMarkup.collapse.navbar-collapse
-    .navbar-nav
-      %a.nav-item.nav-link.active{:href => "#"}
-        Home
-        %span.sr-only (current)
-      %a.nav-item.nav-link{:href => "#"} Features
-      %a.nav-item.nav-link{:href => "#"} Pricing
-      %a.nav-item.nav-link.disabled{:href => "#"} Disabled
+
+%table.table
+  %thead.thead-dark
+    %tr
+      %th{:scope => "col"} Nombre
+      %th{:scope => "col"} Handler
+      %th{:scope => "col"} Último post
+  %tbody
+    -@accounts.each do |account|
+    %tr
+      %th{:scope => "row"} 1
+      %td Mark
+      %td Otto
+      %td @mdo
+    %tr
+      %th{:scope => "row"} 2
+      %td Jacob
+      %td Thornton
+      %td @fat
+    %tr
+      %th{:scope => "row"} 3
+      %td Larry
+      %td the Bird
+      %td @twitter
+
+
+= link_to 'Nueva Cuenta', new_account_path
