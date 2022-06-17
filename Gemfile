@@ -32,7 +32,9 @@ gem 'open-uri'
 gem 'devise'
 gem 'activeadmin'
 gem 'simple_form'
-
+gem 'webdrivers'
+gem 'watir'
+gem 'headless'
 
 
 # Reduces boot times through caching; required in config/boot.rb

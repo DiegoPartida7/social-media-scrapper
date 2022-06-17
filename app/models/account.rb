@@ -2,27 +2,99 @@ class Account < ApplicationRecord
   require 'nokogiri'
   require 'mechanize'
   require 'open-uri'
+  require 'webdrivers/chromedriver'
+  require 'headless'
+
   belongs_to :user
+  def initialize(args = {})
+    default_opts = {download_directory: "./tmp/downloads", success: true, headless: true, logged_in: false}
+      opts = default_opts.merge(args)
+      opts.each do |k,v|
+        instance_variable_set("@#{k}", v) unless v.nil?
+      end
+      
+    @download_directory = Rails.env.production? ? "#{Rails.root.to_s}/storage" : "#{Rails.root.to_s}/tmp"
+    @headless = Rails.env.production?
+    @success = true
+    @proxy = Rails.env.production? ? { http: proxy_data, ssl: proxy_data } : {}
+  end
 
   def last_post
-    puts "Scraping starting...."
-    agent = Mechanize.new
-    # agent.user_agent_alias = 'Mac Safari 4'
-  
-    puts "Empezando SCRAPING INSTA...."
-    puts '------------------------------------'
-    puts "Scrapping de potal de proveedores..."
-    agent.get('https://www.instagram.com/bolteam_/') do |page|
-      pp page
-      doc = Nokogiri::HTML(page.content)
-      puts doc
-      # Login to a website
-      # mypage = page.form_with(action: 'https://aguilaazteca.mx/index.php/resellers/sessions/login') do |form|
-      #   form['username'] = 'gejaarre'
-      #   form['password'] = 'GaA2021'
-      # end.submit
 
+    unless @browser
+      default_opts = {download_directory: "./tmp/downloads", success: true, headless: true, logged_in: false}
+
+      @download_directory = Rails.env.production? ? "#{Rails.root.to_s}/storage" : "#{Rails.root.to_s}/tmp"
+      @headless = Rails.env.production?
+      @success = true
+      @proxy = Rails.env.production? ? { http: proxy_data, ssl: proxy_data } : {}
+      #@headless = Headless.new
+      #@headless.start
+      args = ['--ignore-certificate-errors', '--disable-popup-blocking', '--disable-translate', "--no-sandbox"]
+      prefs = {
+        download: {
+          prompt_for_download: false,
+          default_directory: @download_directory,
+          directory_upgrade: true,
+        },
+        browser:{
+          set_download_behavior: {
+            behavior: "allow",
+            download_path: @download_directory,
+          },
+        },
+        savefile: {default_directory: @download_directory},
+        download_path: @download_directory
+
+      }
+
+      @browser = Watir::Browser.new :chrome, options: {prefs: prefs, args: args}, headless: @headless
+      @browser.driver.download_path = @download_directory
+      puts "Browser size => #{@browser.window.size}; Resizing to 1200x800"
+      @browser.window.resize_to(1200, 800)
+      puts "Browser size => #{@browser.window.size}"
+      @browser.goto("https://www.instagram.com/accounts/login/?next=/#{self.handler}/")
+      puts @browser.html
+      text_field = @browser.text_field(name: 'username')
+      text_field.set 'jon___snow_22'
+      text_field = @browser.text_field(name: 'password')
+      text_field.set 'Bolteam123!'
+      button = @browser.button(type: 'submit')
+      button.click
+      but_save = @browser.button(text: 'Save Info')
+      puts but_save
+      but_save.click
+      profile = @browser.divs(class: '_acut').last
+      profile.click
+      # logout = @browser.div(text: 'Log Out')
+      # logout.click
+      # last_post = @browser.div
+
+
+        
+
+      # html_doc = Nokogiri::HTML(@browser.html)
+      # puts html_doc
     end
+
+    # puts "Scraping starting...."
+    # agent = Mechanize.new
+    # # agent.user_agent_alias = 'Mac Safari 4'
+  
+    # puts "Empezando SCRAPING INSTA...."
+    # puts '------------------------------------'
+    # puts "Scrapping de potal de proveedores..."
+    # agent.get('https://www.instagram.com/bolteam_/') do |page|
+    #   pp page
+    #   doc = Nokogiri::HTML(page.content)
+    #   puts doc
+    #   # Login to a website
+    #   # mypage = page.form_with(action: 'https://aguilaazteca.mx/index.php/resellers/sessions/login') do |form|
+    #   #   form['username'] = 'gejaarre'
+    #   #   form['password'] = 'GaA2021'
+    #   # end.submit
+
+    # end
 
 
 

@@ -116,6 +116,7 @@ GEM
     has_scope (0.8.0)
       actionpack (>= 5.2)
       activesupport (>= 5.2)
+    headless (2.3.1)
     http-cookie (1.0.5)
       domain_name (~> 0.5)
     i18n (1.10.0)
@@ -283,6 +284,9 @@ GEM
     uri (0.11.0)
     warden (1.2.9)
       rack (>= 2.0.9)
+    watir (7.1.0)
+      regexp_parser (>= 1.2, < 3)
+      selenium-webdriver (~> 4.0)
     web-console (4.2.0)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
@@ -317,6 +321,7 @@ DEPENDENCIES
   capybara (>= 3.26)
   devise
   hamlit
+  headless
   jbuilder (~> 2.7)
   listen (~> 3.3)
   mechanize
@@ -332,6 +337,7 @@ DEPENDENCIES
   spring
   turbolinks (~> 5)
   tzinfo-data
+  watir
   web-console (>= 4.1.0)
   webdrivers
   webpacker (~> 5.0)
