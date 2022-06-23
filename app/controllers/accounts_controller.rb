@@ -1,6 +1,6 @@
 class AccountsController < ApplicationController
   before_action :authenticate_user!
-
+  include AccountsHelper
   def index
     @accounts = current_user.accounts
   end

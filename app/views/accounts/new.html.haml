@@ -1,4 +1,4 @@
 = simple_form_for @account do |f|
-  = f.input :name
+  = f.input :name, label: 'Nombre'
   = f.input :handler
-  = f.button :submit
+  = f.button :submit, 'Crear', class: "btn btn-primary" 
