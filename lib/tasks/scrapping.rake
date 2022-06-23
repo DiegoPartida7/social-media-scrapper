@@ -1,6 +1,6 @@
 desc 'run insta script'
 task :instagram => :environment do
-  accounts = Account.all
+  accounts = Account.is_active
   # Esta version fue el inicio para sacar el catalogo basico
   # de la pagina de de aguilaazteca del portal de proveedores
 
@@ -69,6 +69,7 @@ task :instagram => :environment do
     but_save.click
     counter = 0
     accounts.each do |account|
+      Rails.logger.info "going to #{account.name}" 
       @browser.goto("https://www.instagram.com/#{account.handler}")
       posts_divs = @browser.divs(class: '_aabd').first
       first_post = posts_divs.link(class: 'oajrlxb2')
@@ -88,3 +89,10 @@ task :instagram => :environment do
     last_post = @browser.div
   end
 end
+
+
+
+#bolteam 3 days ago
+#bicho 4 hours ago
+#jennie 4 days ago
+#rose 2 days ago

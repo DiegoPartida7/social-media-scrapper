@@ -23,8 +23,16 @@ class AccountsController < ApplicationController
     end
   end
 
+  def run_scrapper
+    require 'rake'
+    SocialMediaScrapping::Application.load_tasks
+    # Rake::Task[params[:task]].invoke
+    Rake::Task['instagram'].invoke
+    redirect_to root_path
+  end
+
   private
   def account_params
-    params.require(:account).permit(:name, :handler)
+    params.require(:account).permit(:name, :handler, :active)
   end
 end
