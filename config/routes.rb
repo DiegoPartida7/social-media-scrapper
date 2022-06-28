@@ -6,4 +6,5 @@ Rails.application.routes.draw do
     get "actualizar" ,to: 'accounts#run_scrapper', as: :run_scrapper, on: :collection
 
   end
+  match "/delayed_job" => DelayedJobWeb, :anchor => false, :via => [:get, :post]
 end

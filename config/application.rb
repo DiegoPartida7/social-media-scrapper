@@ -8,6 +8,8 @@ Bundler.require(*Rails.groups)
 
 module SocialMediaScrapping
   class Application < Rails::Application
+    config.active_job.queue_adapter = :delayed_job
+
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
 

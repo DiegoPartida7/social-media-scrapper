@@ -36,8 +36,10 @@ gem 'simple_form'
 gem 'webdrivers'
 gem 'watir'
 gem 'headless'
-
-
+gem 'clockwork'
+gem 'delayed_job_active_record'
+gem 'daemons'
+gem "delayed_job_web"
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 
