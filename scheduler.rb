@@ -13,7 +13,9 @@ module Clockwork
   # end
   # every(1.day, 'ScheduledTasks::InstagramJob', at: '8:00', tz: 'America/Monterrey') do
 
-  every(1.minutes, 'ScheduledTasks::InstagramJob') do
+  # every(1.minutes, 'ScheduledTasks::InstagramJob') do
+  every(1.day, 'ScheduledTasks::InstagramJob', at: '8:00', tz: 'America/Monterrey') do
+
     ScheduledTasks::InstagramJob.delay.perform
     Delayed::Worker.logger.info("Log Entry")
 
