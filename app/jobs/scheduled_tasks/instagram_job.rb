@@ -71,6 +71,9 @@ module ScheduledTasks
         puts date.datetime
         date_text = date.text
         puts date_text
+        if date_text == ""
+          date_text = "Error con la fecha"
+        end
         account.update(last_post: date_text)
         exit_button = @browser.svg(class: 'fg7vo5n6')
         exit_button.click
