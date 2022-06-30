@@ -20,19 +20,11 @@ module ScheduledTasks
       # opts = default_opts.merge(args)
       # opts.each do |k,v|
       #   instance_variable_set("@#{k}", v) unless v.nil?
-      # end
-      
+      # end  
       @download_directory = Rails.env.production? ? "#{Rails.root.to_s}/storage" : "#{Rails.root.to_s}/tmp"
       @headless = Rails.env.production?
       @success = true
-      @proxy = Rails.env.production? ? { http: proxy_data, ssl: proxy_data } : {}
-    
-      default_opts = {download_directory: "./tmp/downloads", success: true, headless: true, logged_in: false}
-  
-      @download_directory = Rails.env.production? ? "#{Rails.root.to_s}/storage" : "#{Rails.root.to_s}/tmp"
-      @headless = Rails.env.production?
-      @success = true
-      @proxy = Rails.env.production? ? { http: proxy_data, ssl: proxy_data } : {}
+      # @proxy = Rails.env.production? ? { http: proxy_data, ssl: proxy_data } : {}
       # @headless = Headless.new
       # @headless.start
       args = ['--ignore-certificate-errors', '--disable-popup-blocking', '--disable-translate', "--no-sandbox"]
