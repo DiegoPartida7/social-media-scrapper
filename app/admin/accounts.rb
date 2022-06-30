@@ -6,9 +6,9 @@ ActiveAdmin.register Account do
   # == Includes =============================================================
 
   # == Scopes ===============================================================
-  scope :all
-  # scope "activo", :active
-  # scope :pending_payment
+  scope "Todo", :all
+  scope "Activos", :is_active
+  # scope "nombre", :name
 
   # == Permit Params ========================================================
   permit_params :name, :handler, :active, :user_id

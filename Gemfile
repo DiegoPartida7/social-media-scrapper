@@ -40,6 +40,7 @@ gem 'clockwork'
 gem 'delayed_job_active_record'
 gem 'daemons'
 gem "delayed_job_web"
+gem 'rocketchat'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 

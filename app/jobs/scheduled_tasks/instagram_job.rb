@@ -1,6 +1,11 @@
 module ScheduledTasks
   class InstagramJob
     def self.perform
+      require 'rocketchat'
+
+      rocket_server = RocketChat::Server.new('http://your.server.address/')
+      session = rocket_server.login('username', 'password')
+      
       accounts = Account.is_active
       Delayed::Worker.logger.info("Inside Job")
 
